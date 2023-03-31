@@ -1,0 +1,58 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(228, 226, 226);
+}
+
+.calculator {
+    max-width: 340px;
+    box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.15);
+}
+
+.output {
+    background-color: #222222;
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+    text-align: right;
+    font-size: 1.7rem;
+}
+
+.calculator_keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background-color: #999;
+}
+
+button {
+    background-color: #fff;
+    padding: 0.8em 2.25em;
+    position: relative;
+    text-align: center;
+    border: none;
+    font-weight: 600;
+}
+
+.key--equal {
+    background-image: linear-gradient(to bottom, #fe886a, #ff7033);
+    grid-column: -2;
+    grid-row: 2 / span 4;
+}
+
+.key--operator {
+    font-size: 1rem;
+}
+
