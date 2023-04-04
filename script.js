@@ -22,6 +22,9 @@ keys.addEventListener("click", (e) => {
     if (action === 'all_clear') {
       clear();
     }
+    if (action === 'clear') {
+      deleteNumber();
+    }
   }  
 });
 
@@ -47,6 +50,10 @@ function clear() {
   firstOperand = '';
   secondOperand = '';
   currentOperation = null;
+}
+
+function deleteNumber() {
+  firstOutput.textContent = firstOutput.textContent.toString().slice(0, -1);
 }
 
 function add(a, b) {
