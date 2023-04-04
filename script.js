@@ -1,6 +1,11 @@
+let firstOperand = '';
+let secondOperand = '';
+let currentOperation = null;
+
 const calculator = document.querySelector(".calculator");
 const keys = document.querySelector(".calculator_keys");
 const firstOutput = document.querySelector('.firstOutput');
+const secondOutput = document.querySelector('.secondOutput')
 
 keys.addEventListener("click", (e) => {
   if (e.target.matches("button")) {
@@ -13,6 +18,9 @@ keys.addEventListener("click", (e) => {
     }
     if (action === 'decimal') {
       appendPoint();
+    }
+    if (action === 'all_clear') {
+      clear();
     }
   }  
 });
@@ -31,6 +39,14 @@ function appendPoint() {
   }
   if (firstOutput.textContent.includes('.')) return
   firstOutput.textContent += '.';
+}
+
+function clear() {
+  firstOutput.textContent = '0';
+  secondOutput.textContent = '';
+  firstOperand = '';
+  secondOperand = '';
+  currentOperation = null;
 }
 
 function add(a, b) {
