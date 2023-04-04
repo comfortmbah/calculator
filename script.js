@@ -8,9 +8,11 @@ keys.addEventListener("click", (e) => {
     const action = key.dataset.action;
     const keyContent = key.textContent;
     
-
     if (!action) {
       appendNumber(keyContent);
+    }
+    if (action === 'decimal') {
+      appendPoint();
     }
   }  
 });
@@ -21,6 +23,14 @@ function appendNumber(number) {
   } else {
     firstOutput.textContent += number;
   }
+}
+
+function appendPoint() {
+  if (firstOutput.textContent === '') {
+    firstOutput.textContent = '0';
+  }
+  if (firstOutput.textContent.includes('.')) return
+  firstOutput.textContent += '.';
 }
 
 function add(a, b) {
