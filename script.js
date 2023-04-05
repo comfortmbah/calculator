@@ -34,6 +34,9 @@ keys.addEventListener("click", (e) => {
     ) {
       setOperation(keyContent);
     }
+    if (action === 'calculate') {
+      evaluate();
+    }
   }  
 });
 
@@ -44,6 +47,7 @@ function screenReset() {
 
 function appendNumber(number) {
   if (firstOutput.textContent === '0' || resetScreen) {
+    screenReset();
     firstOutput.textContent = number;
   } else {
     firstOutput.textContent += number;
