@@ -1,6 +1,7 @@
 let firstOperand = '';
 let secondOperand = '';
 let currentOperation = null;
+let resetScreen = false;
 
 const calculator = document.querySelector(".calculator");
 const keys = document.querySelector(".calculator_keys");
@@ -25,11 +26,24 @@ keys.addEventListener("click", (e) => {
     if (action === 'clear') {
       deleteNumber();
     }
+    if (
+      action === 'add' ||
+      action === 'subtract' ||
+      action === 'multiply' ||
+      action === 'divide'
+    ) {
+      setOperation(keyContent);
+    }
   }  
 });
 
+function screenReset() {
+  firstOutput.textContent = ''
+  resetScreen = false
+}
+
 function appendNumber(number) {
-  if (firstOutput.textContent === '0') {
+  if (firstOutput.textContent === '0' || resetScreen) {
     firstOutput.textContent = number;
   } else {
     firstOutput.textContent += number;
@@ -37,6 +51,7 @@ function appendNumber(number) {
 }
 
 function appendPoint() {
+  if (resetScreen) screenReset();
   if (firstOutput.textContent === '') {
     firstOutput.textContent = '0';
   }
@@ -54,6 +69,25 @@ function clear() {
 
 function deleteNumber() {
   firstOutput.textContent = firstOutput.textContent.toString().slice(0, -1);
+}
+
+function setOperation(operator) {
+  if (currentOperation !== null) evaluate()
+  firstOperand = firstOutput.textContent;
+  currentOperation = operator;
+  secondOutput.textContent = `${firstOperand} ${currentOperation}`;
+  resetScreen = true;
+}
+
+function evaluate() {
+  if (currentOperation == null || resetScreen) return
+  if (currentOperation === '÷' && firstOutput.textContent === '0') {
+    alert('You can\'t divide by 0');
+  }
+  secondOperand = firstOutput.textContent;
+  firstOutput.textContent = operate(firstOperand, secondOperand, currentOperation)
+  secondOutput.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+  currentOperation = null;
 }
 
 function add(a, b) {
