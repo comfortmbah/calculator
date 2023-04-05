@@ -12,13 +12,14 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: rgb(231, 229, 229, .7);
+    background-color: rgb(231, 229, 229);
     font-family: 'Roboto' sans-serif;
 }
 
 .calculator {
     box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.15);
     padding: 20px;
+    color: #fff;
 }
 
 .screen {
