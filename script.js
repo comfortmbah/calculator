@@ -8,6 +8,7 @@ const keys = document.querySelector(".calculator_keys");
 const firstOutput = document.querySelector('.firstOutput');
 const secondOutput = document.querySelector('.secondOutput')
 
+window.addEventListener('keydown', keyboardInput);
 keys.addEventListener("click", (e) => {
   if (e.target.matches("button")) {
     const key = e.target;
@@ -94,6 +95,21 @@ function evaluate() {
   currentOperation = null;
 }
 
+function keyboardInput(e) {
+  if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
+  if (e.key === '=' || e.key === 'Enter') evaluate();
+  if (e.key === 'Backspace') deleteNumber();
+  if (e.key === 'Delete') clear();
+  if (e.key === '.') appendPoint();
+  if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') setOperation(convertOperator(e.key));
+}
+
+function convertOperator(keyboardOperator) {
+  if (keyboardOperator === '/') return '÷';
+  if (keyboardOperator === '*') return '×';
+  if (keyboardOperator === '+') return '+';
+  if (keyboardOperator === '-') return '-';
+}
 function add(a, b) {
   return a + b;
 }
